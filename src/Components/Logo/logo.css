@@ -1,0 +1,9 @@
+img {
+	width:200px;
+	height: auto;
+}
+
+.logo {
+	display: flex;
+	justify-content: flex-start;
+}
