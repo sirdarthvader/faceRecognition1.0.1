@@ -11,8 +11,8 @@ import './logo.css'
 
 const Logo = () => {
 	return (
-			<div className='logo'>
-				<img src={logo} alt='logo' />
+			<div className='logo-container'>
+				<div><img className='logo' src={logo} alt='logo' /></div>
 			</div>
 		);
 }
