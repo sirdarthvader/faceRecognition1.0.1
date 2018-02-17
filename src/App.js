@@ -40,9 +40,26 @@ const particlesOption = {
 			}
 		}
 	}
-}
+}	
 
 class App extends Component {
+
+	constructor(){
+		super()
+		this.state = {
+			input: ''
+		}
+	}
+
+	onInputChange = (event) => {
+		console.log(event.target.value);
+	}
+
+	onButtonSubmit = () => {
+		console.log('click');
+	}
+
+
   render() {
     return (
       <div className="App">
@@ -51,7 +68,7 @@ class App extends Component {
       	 />
         <Navigation />
         <Logo />
-        <ImageLinkForm />
+        <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
       </div>
     );
   }
