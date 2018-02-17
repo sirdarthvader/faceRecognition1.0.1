@@ -8,10 +8,11 @@
 
 import React from 'react';
 
-const Navigation = () => {
+const Navigation = ({onRouteChange}) => {
 	return (
-		<nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-			<p className="f3 dim underline pa3 pointer">Smart Brains</p>
+		<nav style={{ display: 'flex', justifyContent: 'space-between' }}>
+			<p className='f3 pa3'>Smart Brain</p>
+			<p onClick={() => onRouteChange('signin')} className="pointer">Sign Out</p>
 		</nav>
 		);
 }

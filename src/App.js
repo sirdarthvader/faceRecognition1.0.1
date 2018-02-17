@@ -14,11 +14,12 @@ import Navigation from './Components/Navigation/Navigation.js';
 import Inputimage from './Components/Inputimage/Inputimage.js';
 import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
+import Signin from './Components/Signin/Signin.js';
 
 const particlesOption = {
 	particles : {
 		number: {
-			value: 100, 
+			value: 50, 
 			density: {
 				enable: true,
 				value_area: 800
@@ -55,7 +56,8 @@ class App extends Component {
 		this.state = {
 			input: '',
 			imgurl: '',
-			box: {}
+			box: {},
+			route: 'signin'
 		}
 	}
 
@@ -94,17 +96,30 @@ class App extends Component {
 		.catch(err => console.log(err));
 	}
 
+	onRouteChange = (route) => {
+		this.setState({route: route});
+	}
+
 
   render() {
     return (
       <div className="App">
       	<Particles className='particles'
       		params={particlesOption}
-      	 />
-        <Navigation />
-        <Logo />
-        <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
-        <Inputimage box={this.state.box} imageurl={this.state.input} />
+      	 />	      	
+        <Navigation onRouteChange={this.onRouteChange} />
+        		{ this.state.route === 'signin'       			
+	        		? <div>
+		        			<Logo />
+		        			<Signin onRouteChange={this.onRouteChange} />		        			
+	        			</div>
+	        		: <div>
+			        		<Logo />        
+					        <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
+					      	<Inputimage box={this.state.box} imageurl={this.state.input} />
+					      </div>
+
+						 }
       </div>
     );
   }
