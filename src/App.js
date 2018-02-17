@@ -15,6 +15,7 @@ import Inputimage from './Components/Inputimage/Inputimage.js';
 import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 import Signin from './Components/Signin/Signin.js';
+import Register from './Components/Register/Register.js';
 
 const particlesOption = {
 	particles : {
@@ -96,7 +97,7 @@ class App extends Component {
 		.catch(err => console.log(err));
 	}
 
-	onRouteChange = (onRouteChange) => {
+	onRouteChange = (route) => {
 		this.setState({route: route});
 	}	
 
@@ -108,19 +109,28 @@ class App extends Component {
       		params={particlesOption}
       	 />	      	
         <Navigation onRouteChange={this.onRouteChange} />
-        		{ this.state.route === 'signin'       			
-	        		? <div>
-		        			<Logo />
-		        			<Signin onRouteChange={this.onRouteChange} />		        			
-	        			</div>
-	        		: <div>
-			        		<Logo />        
+        		{ this.state.route === 'home'       			
+	        		?<div>
+	        				<Logo />
 					        <ImageLinkForm
 					         inputchange={this.onInputChange}
 					         buttonsubmit={this.onButtonSubmit}
 					        />
-					      	<Inputimage box={this.state.box} imageurl={this.state.input} />
+					      	<Inputimage 
+					      		box={this.state.box}
+					      	 imageurl={this.state.input} />
 					      </div>
+					    :(
+					    	this.state.route === 'signin' 					    	
+					    	? <div>
+						    		<Logo />
+						    		<Signin onRouteChange={this.onRouteChange} />
+					    		</div>
+					    	: <div>					    			
+					    			<Logo />
+					    			<Register onRouteChange={this.onRouteChange}/>
+					    		</div>
+					    	)	     
 						}
       </div>
     );
