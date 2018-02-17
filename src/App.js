@@ -9,7 +9,9 @@ import React, { Component } from 'react';
 import './App.css';
 import 'tachyons';
 import Particles from 'react-particles-js';
+import Clarifai from 'clarifai';
 import Navigation from './Components/Navigation/Navigation.js';
+import Inputimage from './Components/Inputimage/Inputimage.js';
 import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 
@@ -41,6 +43,10 @@ const particlesOption = {
 		}
 	}
 }	
+// const Clarifai = require('clarifai')
+const app = new Clarifai.App({
+	apiKey: 'a39e4ff05b2d4f5a8098a1b6ce20a538'
+});
 
 class App extends Component {
 
@@ -48,6 +54,7 @@ class App extends Component {
 		super()
 		this.state = {
 			input: ''
+			// url: ''
 		}
 	}
 
@@ -57,6 +64,15 @@ class App extends Component {
 
 	onButtonSubmit = () => {
 		console.log('click');
+		app.models.predict(Clarifai.FACE_DETECT_MODEL, "https://samples.clarifai.com/face-det.jpg")
+		.then(
+			    function(response) {
+			      console.log(response);
+			    },
+			    function(err) {
+			      // there was an error
+			    }
+  	);
 	}
 
 
@@ -69,6 +85,7 @@ class App extends Component {
         <Navigation />
         <Logo />
         <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
+        <Inputimage />
       </div>
     );
   }
