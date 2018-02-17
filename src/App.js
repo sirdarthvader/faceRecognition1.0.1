@@ -96,9 +96,9 @@ class App extends Component {
 		.catch(err => console.log(err));
 	}
 
-	onRouteChange = (route) => {
+	onRouteChange = (onRouteChange) => {
 		this.setState({route: route});
-	}
+	}	
 
 
   render() {
@@ -115,11 +115,13 @@ class App extends Component {
 	        			</div>
 	        		: <div>
 			        		<Logo />        
-					        <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
+					        <ImageLinkForm
+					         inputchange={this.onInputChange}
+					         buttonsubmit={this.onButtonSubmit}
+					        />
 					      	<Inputimage box={this.state.box} imageurl={this.state.input} />
 					      </div>
-
-						 }
+						}
       </div>
     );
   }
