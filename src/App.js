@@ -18,7 +18,7 @@ import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 const particlesOption = {
 	particles : {
 		number: {
-			value: 50, 
+			value: 25, 
 			density: {
 				enable: true,
 				value_area: 800
@@ -53,21 +53,27 @@ class App extends Component {
 	constructor(){
 		super()
 		this.state = {
-			input: ''
-			// url: ''
+			input: '',
+			imgurl: ''
 		}
 	}
 
 	onInputChange = (event) => {
-		console.log(event.target.value);
+		this.setState({input: event.target.value})
+		console.log(this.state.input);
 	}
 
 	onButtonSubmit = () => {
+		this.setState({imgurl: this.state.input})
+		console.log(this.state.input);
 		console.log('click');
-		app.models.predict(Clarifai.FACE_DETECT_MODEL, "https://samples.clarifai.com/face-det.jpg")
+		app.models.predict(
+			Clarifai.FACE_DETECT_MODEL, 
+			this.state.input
+			) 
 		.then(
 			    function(response) {
-			      console.log(response);
+			      console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
 			    },
 			    function(err) {
 			      // there was an error
@@ -85,7 +91,7 @@ class App extends Component {
         <Navigation />
         <Logo />
         <ImageLinkForm inputchange={this.onInputChange} buttonsubmit={this.onButtonSubmit} />
-        <Inputimage />
+        <Inputimage imageurl={this.state.input} />
       </div>
     );
   }

@@ -10,10 +10,12 @@
 import React from 'react';
 
 
-const Inputimage = () => {
+const Inputimage = ({ imageurl }) => {
 	return(
-			<div>
-				<img alt='inputimg' src='https://samples.clarifai.com/face-det.jpg' />
+			<div className='center ma'>
+				<div className='absolute mt2'>
+					<img alt='inputimg' src={imageurl} width='500px' height='auto' />
+				</div>
 			</div>
 		);
 }	
