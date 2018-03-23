@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import React, { Component } from 'react';
 import './App.css';
 import 'tachyons';
@@ -90,7 +83,7 @@ class App extends Component {
 		console.log(this.state.input);
 		console.log('click');
 		app.models.predict(
-			Clarifai.FACE_DETECT_MODEL, 
+			app, 
 			this.state.input
 			) 
 		.then(response => this.displayFaceBox(this.faceDetetctionBox(response)))
