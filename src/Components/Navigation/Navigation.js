@@ -14,7 +14,7 @@ const Navigation = () => {
         </Tilt>
       </div>
       <div className="login">
-        <span className='f3 link dim black underline pa3 pointer '>Signout</span>
+        <span className='f3 link dim white underline pa3 pointer '>Signout</span>
       </div>
     </div>
   );

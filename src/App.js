@@ -121,7 +121,7 @@ class App extends Component {
           />
         </div> 
         : <div>
-          <Signin />
+          <Signin  onRouteChange={ this.onRouteChange } />
         </div>
         }
       </div>
