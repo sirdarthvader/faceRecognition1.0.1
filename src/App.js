@@ -7,6 +7,7 @@ import Navigation from './Components/Navigation/Navigation.js';
 import Inputimage from './Components/Inputimage/Inputimage.js';
 import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
+import Signin from './Components/Signin/Signin';
 
 const particlesOption = {
   particles: {
@@ -48,7 +49,8 @@ class App extends Component {
     this.state = {
       input: '',
       imgurl: '',
-      box: {}
+      box: {},
+      route: 'signin'
     }
   }
 
@@ -105,16 +107,23 @@ class App extends Component {
           params={particlesOption}
         />
         <Navigation onRouteChange={this.onRouteChange} />
-        <Logo />
-        <ImageLinkForm
-          inputchange={this.onInputChange}
-          buttonsubmit={this.onButtonSubmit}
-          refreshPage={this.refreshPage}
-        />
-        <Inputimage
-          box={this.state.box}
-          imageurl={this.state.input}
-        />
+        { this.state.route === 'home' ?
+        <div>
+          <Logo />
+            <ImageLinkForm
+              inputchange={this.onInputChange}
+              buttonsubmit={this.onButtonSubmit}
+              refreshPage={this.refreshPage}
+            />
+          <Inputimage
+            box={this.state.box}
+            imageurl={this.state.input}
+          />
+        </div> 
+        : <div>
+          <Signin />
+        </div>
+        }
       </div>
     );
   }
