@@ -79,12 +79,13 @@ class App extends Component {
     this.setState({ imgurl: this.state.input })
     console.log(this.state.input);
     console.log('click');
-    app.models.predict(
+    app.models
+    .predict(
       Clarifai.FACE_DETECT_MODEL,      
       this.state.input
     )
-      .then(response => this.displayFaceBox(this.faceDetetctionBox(response)))
-      .catch(err => console.log(err));
+    .then(response => this.displayFaceBox(this.faceDetetctionBox(response)))
+    .catch(err => console.log(err));
   }
 
   refreshPage = () => {
