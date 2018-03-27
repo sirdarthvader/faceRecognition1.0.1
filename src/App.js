@@ -80,8 +80,7 @@ class App extends Component {
     console.log(this.state.input);
     console.log('click');
     app.models.predict(
-      Clarifai.FACE_DETECT_MODEL,
-      
+      Clarifai.FACE_DETECT_MODEL,      
       this.state.input
     )
       .then(response => this.displayFaceBox(this.faceDetetctionBox(response)))
@@ -89,7 +88,8 @@ class App extends Component {
   }
 
   refreshPage = () => {
-    console.log('click');
+    this.setState({input: ''});
+    
   }
 
   onRouteChange = (route) => {
