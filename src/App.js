@@ -108,14 +108,13 @@ class App extends Component {
 
 
   render() {
-    const { input, imgurl, box, isSignedIn, route}
     return (
       <div className="App">
         <Particles className='particles'
           params={particlesOption}
         />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-        { route === 'home' ?
+        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+        { this.state.route === 'home' ?
         <div>
           <Logo />
             <ImageLinkForm
@@ -124,12 +123,12 @@ class App extends Component {
               refreshPage={this.refreshPage}
             />
           <Inputimage
-            box={box}
-            imageurl={input}
+            box={this.state.box}
+            imageurl={this.state.input}
           />
         </div> 
         : (
-          route === 'signin'
+          this.state.route === 'signin'
           ? <Signin  onRouteChange={this.onRouteChange} />
           : <Register onRouteChange={this.onRouteChange} />
         )
