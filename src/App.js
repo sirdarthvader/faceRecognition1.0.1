@@ -8,6 +8,7 @@ import Inputimage from './Components/Inputimage/Inputimage.js';
 import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 import Signin from './Components/Signin/Signin';
+import Register from './Components/Register/Register';
 
 const particlesOption = {
   particles: {
@@ -120,9 +121,11 @@ class App extends Component {
             imageurl={this.state.input}
           />
         </div> 
-        : <div>
-          <Signin  onRouteChange={ this.onRouteChange } />
-        </div>
+        : (
+          this.state.route === 'signin'
+          ? <Signin />
+          : <Register />
+        )
         }
       </div>
     );
