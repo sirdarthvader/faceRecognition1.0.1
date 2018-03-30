@@ -94,6 +94,7 @@ class App extends Component {
 
   refreshPage = () => {
     this.setState({input: ''});
+    console.log('inside the refresh function');
     
   }
 
