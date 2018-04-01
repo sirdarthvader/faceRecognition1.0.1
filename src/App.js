@@ -96,7 +96,6 @@ class App extends Component {
     console.log('inside the refresh function');
     this.setState({input: ''});
     console.log('inside the refresh function');
-    
   }
 
   onRouteChange = (route) => {
