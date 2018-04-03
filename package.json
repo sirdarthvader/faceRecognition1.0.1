@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",
+    "nodemon": "^1.17.3",
     "tachyons": "^4.9.1"
   }
 }
