@@ -22,5 +22,3 @@ const ImageLinkForm = ({ inputchange, buttonsubmit, refreshPage }) => {
 
 
 export default ImageLinkForm;
-
-

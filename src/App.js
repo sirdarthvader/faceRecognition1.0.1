@@ -95,7 +95,7 @@ class App extends Component {
   refreshPage = () => {
     console.log('inside the refresh function');
     this.setState({input: ''});
-    
+    console.log('inside the refresh function');
   }
 
   onRouteChange = (route) => {
@@ -138,6 +138,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
