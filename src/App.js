@@ -46,7 +46,7 @@ const app = new Clarifai.App({
 class App extends Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
       input: '',
       imgurl: '',
@@ -55,7 +55,12 @@ class App extends Component {
       isSignedIn: false
     }
   }
-
+  componentDidMount() {
+    fetch('http://localhost:3001')
+      .then(response => response.json())
+      .then(console.log);
+      console.log('component did mount');
+  }
   faceDetetctionBox(data) {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputImage');
@@ -68,6 +73,8 @@ class App extends Component {
       bottomRow: height - (clarifaiFace.bottom_row * height)
     }
   }
+
+
 
   displayFaceBox(box) {
     this.setState({ box: box });
