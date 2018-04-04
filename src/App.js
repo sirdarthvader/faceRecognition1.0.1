@@ -52,8 +52,8 @@ class App extends Component {
       input: '',
       imgurl: '',
       box: {},
-      route: 'signin',
-      isSignedIn: false,
+      route: '',
+      isSignedIn: '',
       user: {
         id: '',
         name: '',
@@ -68,7 +68,10 @@ class App extends Component {
       .then(response => response.json())
       .then(console.log);
       console.log('component did mount');
+      console.log(this.state.user.name)
   }
+
+
   faceDetetctionBox(data) {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputImage');
@@ -139,7 +142,10 @@ class App extends Component {
         <Particles className='particles'
           params={particlesOption}
         />
-        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+        <Navigation
+         isSignedIn={this.state.isSignedIn}
+         onRouteChange={this.onRouteChange} 
+         />
         { this.state.route === 'home' ?
         <div>
           <Logo />
