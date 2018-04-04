@@ -11,7 +11,7 @@ import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
 import Rank from './Components/Rank/Rank';
 
-const particlesOption = {
+const particlesOptions = {
   particles: {
     number: {
       value: 50,
@@ -39,13 +39,13 @@ const particlesOption = {
     }
   }
 }
+
 // const Clarifai = require('clarifai')
 const app = new Clarifai.App({
   apiKey: 'c1c6229976194ac49cb5820c17e3f6a6'
 });
 
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -63,6 +63,8 @@ class App extends Component {
       }
     }
   }
+
+
   componentDidMount() {
     fetch('http://localhost:3001')
       .then(response => response.json())
@@ -85,6 +87,7 @@ class App extends Component {
     }
   }
 
+
   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
@@ -102,10 +105,14 @@ class App extends Component {
     console.log(box);
   }
 
+
+
   onInputChange = (event) => {
     this.setState({ input: event.target.value })
     console.log(this.state.input);
   }
+
+
 
   onButtonSubmit = () => {
     this.setState({ imgurl: this.state.input })
@@ -120,11 +127,14 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+
   refreshPage = () => {
     console.log('inside the refresh function');
     this.setState({input: ''});
     console.log('inside the refresh function');
   }
+
+
 
   onRouteChange = (route) => {
     if(route === 'signout') {
@@ -137,43 +147,31 @@ class App extends Component {
 
 
   render() {
+    const { isSignedIn, imageUrl, route, box } = this.state;
     return (
       <div className="App">
-        <Particles className='particles'
-          params={particlesOption}
+         <Particles className='particles'
+          params={particlesOptions}
         />
-        <Navigation
-         isSignedIn={this.state.isSignedIn}
-         onRouteChange={this.onRouteChange} 
-         />
-        { this.state.route === 'home' ?
-        <div>
-          <Logo />
-          <Rank 
-            name={this.state.user.name}
-            entries={this.state.user.entries}
-          />
-            <ImageLinkForm
-              inputchange={this.onInputChange}
-              buttonsubmit={this.onButtonSubmit}
-              refreshPage={this.refreshPage}
-            />
-          <Inputimage
-            box={this.state.box}
-            imageurl={this.state.input}
-          />
-        </div> 
-        : (
-          this.state.route === 'signin'
-          ? <Signin  
-            onRouteChange={this.onRouteChange} 
-            loadUser={this.loadUser}
-            />
-          : <Register 
-            loadUser={this.loadUser}
-            onRouteChange={this.onRouteChange} 
-            />
-        )
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        { route === 'home'
+          ? <div>
+              <Logo />
+              <Rank
+                name={this.state.user.name}
+                entries={this.state.user.entries}
+              />
+              <ImageLinkForm
+                onInputChange={this.onInputChange}
+                onButtonSubmit={this.onButtonSubmit}
+              />
+              <Inputimage box={box} imageUrl={imageUrl} />
+            </div>
+          : (
+             route === 'signin'
+             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+            )
         }
       </div>
     );
