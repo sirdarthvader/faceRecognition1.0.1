@@ -20,17 +20,17 @@ class Signin extends React.Component {
 onSubmitSignin = () => {
 	fetch('http://localhost:3001/signin', {
 		method: 'post',
-		headers: {'content-type': 'application/json'},
+		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({
 			email: this.state.signInEmail,
 			password: this.state.signInPassword
 		})
-	}) .then(response => response.json())
-			.then(data => {
-				if(data === 'logged in !!') {
-					this.props.onRouteChange('home')
-				}
-			})
+	}).then(response => response.json())
+		.then(data => {
+			if(data === 'success') {
+				this.props.onRouteChange('home')
+			}
+		})
 }
 	render() {
 		const {onRouteChange} = this.props;
@@ -63,6 +63,7 @@ onSubmitSignin = () => {
 							</fieldset>
 							<div className="">
 								<input onClick={this.onSubmitSignin} 
+								onClick={()=> this.props.onRouteChange('home')}
 								className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
 								type="submit" 
 								value="Sign in" />
