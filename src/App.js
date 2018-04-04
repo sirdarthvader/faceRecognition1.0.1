@@ -9,6 +9,7 @@ import Logo from './Components/Logo/Logo.js';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.js';
 import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
+import Rank from './Components/Rank/Rank';
 
 const particlesOption = {
   particles: {
@@ -52,7 +53,14 @@ class App extends Component {
       imgurl: '',
       box: {},
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: '',
+        joined: ''
+      }
     }
   }
   componentDidMount() {
@@ -74,6 +82,16 @@ class App extends Component {
     }
   }
 
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    }})
+    console.log(data);
+  }
 
 
   displayFaceBox(box) {
@@ -125,6 +143,10 @@ class App extends Component {
         { this.state.route === 'home' ?
         <div>
           <Logo />
+          <Rank 
+            name={this.state.user.name}
+            entries={this.state.user.entries}
+          />
             <ImageLinkForm
               inputchange={this.onInputChange}
               buttonsubmit={this.onButtonSubmit}
@@ -137,8 +159,14 @@ class App extends Component {
         </div> 
         : (
           this.state.route === 'signin'
-          ? <Signin  onRouteChange={this.onRouteChange} />
-          : <Register onRouteChange={this.onRouteChange} />
+          ? <Signin  
+            onRouteChange={this.onRouteChange} 
+            loadUser={this.loadUser}
+            />
+          : <Register 
+            loadUser={this.loadUser}
+            onRouteChange={this.onRouteChange} 
+            />
         )
         }
       </div>

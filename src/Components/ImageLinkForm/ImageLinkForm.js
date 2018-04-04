@@ -11,9 +11,6 @@ const ImageLinkForm = ({ inputchange, buttonsubmit, refreshPage }) => {
 						<button 
 						className='w-25 grow f4 link ph3 pv2 dib white bg-light-purple'
 						onClick={buttonsubmit}>Detect</button>
-						<button 
-						className='w-25 grow f4 link ph3 pv2 dib white bg-light-purple'
-						onClick={refreshPage}>Clear</button>
 					</div>
 				</div>
 			</div>

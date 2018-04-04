@@ -26,9 +26,11 @@ onSubmitSignin = () => {
 			password: this.state.signInPassword
 		})
 	}).then(response => response.json())
-		.then(data => {
-			if(data === 'success') {
-				this.props.onRouteChange('home')
+		.then(user => {
+			if(user) {
+			console.log(user);
+			this.props.loadUser(user);
+			this.props.onRouteChange('home')
 			}
 		})
 }
@@ -62,8 +64,7 @@ onSubmitSignin = () => {
 								</div>				      
 							</fieldset>
 							<div className="">
-								<input onClick={this.onSubmitSignin} 
-								onClick={()=> this.props.onRouteChange('home')}
+								<input onClick={this.onSubmitSignin}
 								className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
 								type="submit" 
 								value="Sign in" />
