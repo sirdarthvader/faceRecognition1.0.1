@@ -52,8 +52,8 @@ class App extends Component {
       input: '',
       imgurl: '',
       box: {},
-      route: '',
-      isSignedIn: '',
+      route: 'signin',
+      isSignedIn: 'false',
       user: {
         id: '',
         name: '',
@@ -126,15 +126,6 @@ class App extends Component {
     .then(response => this.displayFaceBox(this.faceDetetctionBox(response)))
     .catch(err => console.log(err));
   }
-
-
-  refreshPage = () => {
-    console.log('inside the refresh function');
-    this.setState({input: ''});
-    console.log('inside the refresh function');
-  }
-
-
 
   onRouteChange = (route) => {
     if(route === 'signout') {
