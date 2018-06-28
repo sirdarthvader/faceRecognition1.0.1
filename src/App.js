@@ -89,19 +89,13 @@ class App extends Component {
 
 
   loadUser = (data) => {
-    this.setState({user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      entries: data.entries,
-      joined: data.joined
-    }})
+    this.setState({user: data})
     console.log(data);
   }
 
 
   displayFaceBox(box) {
-    this.setState({ box: box });
+    this.setState({ box });
     console.log(box);
   }
 
@@ -134,18 +128,23 @@ class App extends Component {
       this.setState({isSignedIn: true})
     }
     this.setState({ route: route });
+    // debugger
   }
 
+  showStateRoute = () => {
+    console.log(this.state.route)
+  }
 
   render() {
     const { isSignedIn, imageUrl, route, box } = this.state;
+    // debugger
     return (
       <div className="App">
          <Particles className='particles'
           params={particlesOptions}
         />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-        { route === 'home'
+        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+        { this.state.route === 'home'
           ? <div>
               <Logo />
               <Rank
@@ -156,11 +155,11 @@ class App extends Component {
                 onInputChange={this.onInputChange}
                 onButtonSubmit={this.onButtonSubmit}
               />
-              <Inputimage box={box} imageUrl={imageUrl} />
+              <Inputimage box={this.state.box} imageUrl={this.state.imageUrl} />
             </div>
           : (
-             route === 'signin'
-             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+             this.state.route === 'signin'
+             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} showStateRoute={this.showStateRoute}  />
              : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )
         }
